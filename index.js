@@ -83,7 +83,7 @@ class MPromise {
     }
   }
 
-  parse(promise, result, resolve, reject) {
+  _parse(promise, result, resolve, reject) {
     if (promise === result) {
       throw new TypeError("Chaining cycle detected for promise");
     }
