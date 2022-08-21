@@ -113,21 +113,21 @@ class MPromise {
       if (this.status === MPromise.PENDING) {
         this.callbacks.push({
           onResolve: (value) =>
-            this.parse(promise, onResolve(value), resolve, reject),
+            this._parse(promise, onResolve(value), resolve, reject),
           onReject: (reason) =>
-            this.parse(promise, onReject(reason), resolve, reject),
+            this._parse(promise, onReject(reason), resolve, reject),
         });
       }
 
       if (this.status === MPromise.FULLFILED) {
         setTimeout(() =>
-          this.parse(promise, onResolve(this.value), resolve, reject)
+          this._parse(promise, onResolve(this.value), resolve, reject)
         );
       }
 
       if (this.status === MPromise.REJECTED) {
         setTimeout(() => {
-          this.parse(promise, onReject(this.value), resolve, reject);
+          this._parse(promise, onReject(this.value), resolve, reject);
         });
       }
     });
